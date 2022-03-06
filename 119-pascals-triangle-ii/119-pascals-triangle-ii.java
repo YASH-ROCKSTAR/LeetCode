@@ -1,19 +1,20 @@
 class Solution {
-    public List<Integer> getRow(int rowIndex) {
-        List<Integer> list=new ArrayList<>();
-        List<Integer> row=null;
-        for(int i=0;i<=rowIndex;i++){
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> res=new ArrayList<List<Integer>>();
+        List<Integer> row,pre=null;
+        for(int i=0;i<numRows;i++){
+            //creating new list
             row=new ArrayList<Integer>();
             for(int j=0;j<=i;j++){
                 if(j==0 || j==i){
                     row.add(1);
                 }else{
-                    row.add(list.get(j-1)+list.get(j));
+                    row.add(pre.get(j-1)+pre.get(j));
                 }
             }
-            list=row;
-            
+            pre=row;
+            res.add(row);
         }
-        return list;
+        return res;
     }
 }
