@@ -1,9 +1,20 @@
 class Solution {
     public String restoreString(String s, int[] indices) {
-        StringBuilder sb=new StringBuilder(s);
+        int n=s.length();
+        
+        char ch[]= new char[n];
+        
         for(int i=0;i<s.length();i++){
-           sb.setCharAt(indices[i],s.charAt(i));
+            
+            //iterating over string 
+            char sh=s.charAt(i);
+            //storing value of indices
+            int val=indices[i];
+            
+            //stoing the value ch with reshuffle
+            ch[val]=sh;
         }
-        return sb.toString();
+        //reshuffle
+        return String.valueOf(ch);
     }
 }
