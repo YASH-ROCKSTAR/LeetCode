@@ -13,17 +13,21 @@ class Solution {
         if(head==null){
             return null;
         }
-        if(head.next==null){
-            return head;
-        }
-        if(head.val==head.next.val){
-            int removedElement=head.val;
-            while(head!=null && head.val==removedElement){
-                head=head.next;
+        ListNode current=new ListNode(0);
+        current.next=head;
+        ListNode prev=current;
+        while(head!=null){
+            if(head.next!=null && head.val==head.next.val){
+                while(head.next!=null && head.val==head.next.val){
+                    head=head.next;
+                }
+                //skipping duplicate
+                prev.next=head.next;
+            }else{
+                prev=prev.next;
             }
-            return deleteDuplicates(head);
+            head=head.next;
         }
-        head.next=deleteDuplicates(head.next);
-        return head;
+        return current.next;
     }
 }
