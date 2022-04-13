@@ -1,0 +1,1 @@
+//string are character array
