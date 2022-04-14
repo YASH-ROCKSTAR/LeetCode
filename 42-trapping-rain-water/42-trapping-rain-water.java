@@ -1,25 +1,24 @@
 class Solution {
     public int trap(int[] height) {
         int n=height.length;
-        int l=0;
-        int r=n-1;
+        int left=0 , right=n-1;
         int res=0;
-        int leftmax=0;
-        int rightmax=0;
-        while(l<=r){
-            //checking left is smaller thena right
-            if(height[l]<=height[r]){
-                
-                //chekcing if height of l is greater than right then assign the value to it
-                if(height[l]>=leftmax) leftmax=height[l];
-                else res+=(leftmax-height[l]);
-                
-                l++;
+        int maxleft=0 , maxright=0;
+        while(left<=right){
+            if(height[left]<=height[right]){
+                if(height[left]>=maxleft){
+                    maxleft=height[left];
+                }else{
+                    res+=maxleft-height[left];
+                }
+                left++;
             }else{
-                if(height[r]>=rightmax) rightmax=height[r];
-                else res+=(rightmax-height[r]);
-                
-                r--;
+                if(height[right]>=maxright){
+                    maxright=height[right];
+                }else{
+                    res+=maxright-height[right];
+                }
+                right--;
             }
         }
         return res;
