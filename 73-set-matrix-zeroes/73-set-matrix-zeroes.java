@@ -5,6 +5,7 @@ class Solution {
             if(matrix[i][0]==0) col0=0;
             for(int j=1;j<m;j++){
                 if(matrix[i][j]==0){
+                    // setting the rightmost and left most as zero
                     matrix[i][0] = matrix[0][j] = 0; 
                 }
             }
