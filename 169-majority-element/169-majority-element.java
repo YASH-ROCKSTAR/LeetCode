@@ -5,14 +5,12 @@ class Solution {
         for(int i:nums){
             if(count==0){
                 ele=i;
-            }
-            if(i==ele){
+            }if(i==ele){
                 count=count+1;
             }else{
                 count=count-1;
             }
         }
         return ele;
-        
     }
 }
