@@ -16,15 +16,15 @@ class Solution {
         TreeNode left=lowestCommonAncestor(root.left,p,q);
         TreeNode right=lowestCommonAncestor(root.right,p,q);
         
-        //if left nil then right print whatever it is
-        if(left==null){
-            return right;
-        }
-        else if(right==null){
-            return left;
-        }
-        else{//if both are not null the we found our result
+        if(left!=null && right!=null){
             return root;
         }
+        if(left!=null){
+            return left;
+        }
+        else{
+            return right;
+        }
+        
     }
 }
