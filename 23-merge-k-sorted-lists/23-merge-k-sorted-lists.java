@@ -22,6 +22,7 @@ class Solution {
             point.next=q.poll();
             point=point.next; //checking next element
             if(point.next!=null){
+                //adding next if next is not null
                 q.add(point.next);
             }
         }
