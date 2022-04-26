@@ -13,6 +13,7 @@
  *     }
  * }
  */
+//iterative solution
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         Queue<TreeNode> queue=new LinkedList<TreeNode>();
@@ -44,4 +45,5 @@ class Solution {
         }
         return list;
     }
+    
 }
