@@ -10,20 +10,22 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        Queue<ListNode> q=new PriorityQueue<>((a,b)->a.val-b.val);
+      
+        Queue<ListNode> pq=new PriorityQueue<>((a,b)->a.val-b.val);
         for(ListNode l:lists){
             if(l!=null){
-                q.add(l);
+                pq.add(l);
             }
         }
+        //making dummy node
         ListNode head=new ListNode(-1);
         ListNode point=head;
-        while(!q.isEmpty()){
-            point.next=q.poll();
-            point=point.next; //checking next element
+        while(!pq.isEmpty()){
+            point.next=pq.poll();
+            point=point.next; //cheking next element
             if(point.next!=null){
-                //adding next if next is not null
-                q.add(point.next);
+                //adding if next element is null
+                pq.add(point.next);
             }
         }
         return head.next;
