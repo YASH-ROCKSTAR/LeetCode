@@ -11,7 +11,12 @@
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
       
-        Queue<ListNode> pq=new PriorityQueue<>((a,b)->a.val-b.val);
+        Queue<ListNode> pq=new PriorityQueue<>(new Comparator<ListNode>(){
+            
+            public int compare(ListNode o1,ListNode o2){
+                return o1.val-o2.val;
+            }
+        });
         for(ListNode l:lists){
             if(l!=null){
                 pq.add(l);
