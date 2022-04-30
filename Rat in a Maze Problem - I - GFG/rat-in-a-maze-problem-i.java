@@ -35,46 +35,34 @@ class Rat {
 class Solution {
     public static ArrayList<String> findPath(int[][] m, int n) {
         // Your code here
-        ArrayList<String> ans=new ArrayList<>();
-        int[][] visited=new int[n][n];
-        //making vivted matrix 0
+        int[][] vis=new int[n][n];
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
-                visited[i][j]=0;
+                vis[i][j]=0;
             }
         }
-        if(m[0][0]==1) solve(0,0,m,n,ans,"",visited);
+        int[] di={1,0,0,-1};
+        int[] dj={0,-1,1,0};
+        ArrayList<String> ans=new ArrayList<>();
+        if(m[0][0]==1) solve(0,0,m,n,ans,"",vis,di,dj);
         return ans;
     }
-    public static void solve(int i, int j,int[][] arr,int n,ArrayList<String> ans,String move
-    ,int[][] visited){
+    public static void solve(int i,int j,int[][] arr,int n,ArrayList<String> ans,String move,
+    int[][] vis,int [] di,int[] dj){
         if(i==n-1 && j==n-1){
             ans.add(move);
             return;
         }
-        //down
-        if(i+1<n && visited[i+1][j]==0 && arr[i+1][j]==1){
-            visited[i][j]=1;
-            solve(i+1,j,arr,n,ans,move+"D",visited);
-            visited[i][j]=0;
-        }
-        //left
-        if(j-1>=0 && visited[i][j-1]==0 && arr[i][j-1]==1){
-            visited[i][j]=1;
-            solve(i,j-1,arr,n,ans,move+"L",visited);
-            visited[i][j]=0;
-        }
-        //right
-        if(j+1<n && visited[i][j+1]==0 && arr[i][j+1]==1){
-            visited[i][j]=1;
-            solve(i,j+1,arr,n,ans,move+"R",visited);
-            visited[i][j]=0;
-        }
-        //upward
-        if(i-1>=0 && visited[i-1][j]==0 && arr[i-1][j]==1){
-            visited[i][j]=1;
-            solve(i-1,j,arr,n,ans,move+"U",visited);
-            visited[i][j]=0;
+        String dir="DLRU";
+        for(int ind=0;ind<4;ind++){
+            int nexti=i+di[ind];
+            int nextj=j+dj[ind];
+        
+            if(nexti>=0 && nextj>=0 && nexti<n &&nextj<n && vis[nexti][nextj]==0 && arr[nexti][nextj]==1){
+                vis[i][j]=1;
+                solve(nexti,nextj,arr,n,ans,move+dir.charAt(ind),vis,di,dj);
+                vis[i][j]=0;
+            }
         }
     }
 }
