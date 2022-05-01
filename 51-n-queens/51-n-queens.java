@@ -9,7 +9,7 @@ class Solution {
         }
         List<List<String>> arr=new ArrayList<>();
         for(int col=0;col<board[0].length;col++){
-            if(itisSafe(board,row,col)){
+            if(isSafe(board,row,col)){
                 board[row][col]=true;
                 arr.addAll(Queen(board,row+1));
                 board[row][col]=false;
@@ -17,34 +17,31 @@ class Solution {
         }
         return arr;
     }
-    public boolean itisSafe(boolean[][] board,int row,int col){
-        //vertical col
-        int r=row;
-        while(r>=0){
-            if(board[r][col]==true){
+    public static boolean isSafe(boolean[][] board, int row, int col) {
+        //vertical row
+        for(int i=0;i<row;i++){
+            //cheking if queen is there then it is not safe
+            if(board[i][col]){
                 return false;
             }
-            r--;
         }
         //diagonal left
-        r=row;
-        int c=col;
-        while(r>=0 && c>=0){
-            if(board[r][c]==true){
+        int maxleft=Math.min(row,col);
+        for(int i=1;i<=maxleft;i++){
+            //if true
+            if(board[row-i][col-i]){
                 return false;
             }
-            r--;
-            c--;
         }
-        r=row;
-        c=col;
-        while(r>=0 && c<board[0].length){
-            if(board[r][c]==true){
+        //diagonal right
+        int maxRight=Math.min(row, board.length-col-1);
+        for(int i=1;i<=maxRight;i++){
+            //if true
+            if(board[row-i][col+i]){
                 return false;
             }
-            r--;
-            c++;
         }
+        //if none of checks are matched then true
         return true;
     }
 
