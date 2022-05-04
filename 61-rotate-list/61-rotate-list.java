@@ -16,18 +16,15 @@ class Solution {
         ListNode curr=head;
         int len=1;
         while(curr.next!=null){
-            len++;
             curr=curr.next;
+            len++;
         }
-        
-        //go till that node;
         curr.next=head;
         k=k%len;
         k=len-k;
-        while(k--> 0){
+        while(k-->0){
             curr=curr.next;
         }
-        
         head=curr.next;
         curr.next=null;
         
