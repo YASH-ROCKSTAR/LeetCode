@@ -118,11 +118,19 @@ class Node
     the flattened linked list. */
 class GfG
 {
-    Node mergetwolist(Node a,Node b){
-        
+    Node flatten(Node root)
+    {
+	// Your code here
+	    if(root==null || root.next!=null){
+	        root.next=flatten(root.next);
+	        root=mergelist(root,root.next);
+	    }
+	    
+	    return root;
+    }
+    Node mergelist(Node a,Node b){
         Node temp=new Node(0);
         Node res=temp;
-        
         while(a!=null && b!=null){
             if(a.data<b.data){
                 temp.bottom=a;
@@ -133,25 +141,13 @@ class GfG
                 temp=temp.bottom;
                 b=b.bottom;
             }
-        }
-        if(a!=null){
-            temp.bottom=a;
-        }else{
-            temp.bottom=b;
+            if(a!=null){
+                temp.bottom=a;
+            }
+            else{
+                temp.bottom=b;
+            }
         }
         return res.bottom;
-    } 
-    Node flatten(Node root)
-    {
-	// Your code here
-	    if(root==null || root.next==null){
-	        return root;
-	    }
-	    //for moving to another list
-	    root.next=flatten(root.next);
-	    
-	    //merging
-	    root=mergetwolist(root,root.next);
-	    return root;
     }
 }
