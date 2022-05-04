@@ -13,20 +13,20 @@ class Solution {
         if(head==null){
             return head;
         }
-        ListNode current=head;
-        ListNode prev=null;
-        ListNode nex=null;
+        ListNode curr=head;
         int count=2;
-        while(current!=null && count>0){
-            nex=current.next;
-            current.next=prev;
-            prev=current;
-            current=nex;
+        ListNode nex=null;
+        ListNode newnode=null;
+        while(curr!=null && count>0){
+            nex=curr.next;
+            curr.next=newnode;
+            newnode=curr;
+            curr=nex;
             count--;
         }
         if(nex!=null){
             head.next=swapPairs(nex);
         }
-        return prev;
+        return newnode;
     }
 }
