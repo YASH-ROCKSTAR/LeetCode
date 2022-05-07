@@ -1,6 +1,7 @@
 class Solution {
     public int maximalRectangle(char[][] matrix) {
-        int currow[]=new int[matrix[0].length];
+        int n=matrix[0].length;
+        int currow[]=new int[n];
         int maxArea=0;
         for(int i=0;i<matrix.length;i++){
             for(int j=0;j<matrix[0].length;j++){
@@ -36,10 +37,10 @@ class Solution {
         Stack<Integer> stack = new Stack<>();
         
         for(int i=0; i<arr.length; i++) {
-            if(stack.isEmpty()){
-                stack.push(i);
-                pS[i]=-1;
-            }else{
+            // if(stack.isEmpty()){
+            //     stack.push(i);
+            //     pS[i]=-1;
+            // }else{
                 while(!stack.isEmpty() && arr[stack.peek()] >= arr[i]){
                     stack.pop();
                 }
@@ -50,7 +51,7 @@ class Solution {
                     pS[i] = stack.peek();
                 }
                 stack.push(i);
-            }
+            // }
         }
         
         return pS;
@@ -62,10 +63,10 @@ class Solution {
         Stack<Integer> stack = new Stack<>();
         
         for(int i=arr.length-1; i>=0; i--) {
-            if(stack.isEmpty()){
-                stack.push(i);
-                nS[i]=arr.length;
-            }else{
+            // if(stack.isEmpty()){
+            //     stack.push(i);
+            //     nS[i]=arr.length;
+            // }else{
                 while(!stack.isEmpty() && arr[stack.peek()] >= arr[i]){
                     stack.pop();
                 }
@@ -75,7 +76,7 @@ class Solution {
                     nS[i] = stack.peek();
                 }
                 stack.push(i);
-            }
+            // }
         }
         
         return nS;
