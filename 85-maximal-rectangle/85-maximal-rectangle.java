@@ -1,7 +1,6 @@
 class Solution {
     public int maximalRectangle(char[][] matrix) {
-        int n=matrix[0].length;
-        int currow[]=new int[n];
+        int currow[]=new int[matrix[0].length];
         int maxArea=0;
         for(int i=0;i<matrix.length;i++){
             for(int j=0;j<matrix[0].length;j++){
