@@ -8,7 +8,7 @@ class Solution {
                 if(matrix[i][j]=='0'){
                     currow[j]=0;
                 }else{
-                    currow[j]++;
+                    currow[j]+=1;
                 }
                 
             }
