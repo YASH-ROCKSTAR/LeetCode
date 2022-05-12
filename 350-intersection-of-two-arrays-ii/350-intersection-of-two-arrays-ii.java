@@ -20,8 +20,11 @@ class Solution {
         for(Integer kk:mp1.keySet()){
             if(mp2.containsKey(kk)){
                 int x=Math.min(mp1.get(kk),mp2.get(kk));
+                // System.out.println(mp1.get(kk)+" "+ mp2.get(kk));
+                // System.out.println(mp1.keySet());
                 while(x-->0){
                     li.add(kk);
+                    
                 }
             }
         }
