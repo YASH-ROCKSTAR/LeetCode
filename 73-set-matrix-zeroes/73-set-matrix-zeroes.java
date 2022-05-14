@@ -1,22 +1,26 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
-        int col0=1 , n=matrix.length, m=matrix[0].length;
-        for(int i=0;i<n;i++){
-            if(matrix[i][0]==0) col0=0;
-            for(int j=1;j<m;j++){
+        int col=1;
+        int m=matrix.length;
+        int n=matrix[0].length;
+        for(int i=0;i<m;i++){
+            if(matrix[i][0]==0) col=0;
+            for(int j=1;j<n;j++){
                 if(matrix[i][j]==0){
-                    // setting the rightmost and left most as zero
-                    matrix[i][0] = matrix[0][j] = 0; 
+                    //setting left and top most as zero in dummy matrix
+                    matrix[i][0]=matrix[0][j]=0;
                 }
             }
         }
-        for(int i=n-1;i>=0;i--){
-            for(int j=m-1;j>=1;j--){
+        for(int i=m-1;i>=0;i--){
+            for(int j=n-1;j>=1;j--){
                 if(matrix[i][0]==0 || matrix[0][j]==0){
                     matrix[i][j]=0;
                 }
             }
-            if(col0==0) matrix[i][0]=0;
+            if(col==0){
+                matrix[i][0]=0;
+            }
         }
     }
 }
