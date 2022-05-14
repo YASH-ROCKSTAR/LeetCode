@@ -63,24 +63,20 @@ class Solution
         ArrayList<Integer> li=new ArrayList<>();
         int i=0,j=0,k=0;
         while(i<n1 && j<n2 && k<n3){
-            
-            if(A[i]<B[j] || A[i]<C[k]){
-                i++;
-            }
-            else if(B[j]==A[i] && C[k]<A[i] ){
-                k++;
-            }else if(C[k]==A[i] && B[j]<A[i]){
-                j++;
-            }
-            else if(A[i]==B[j] && A[i]==C[k]){
+            if(A[i]==B[j] && B[j]==C[k]){
                 if(!li.contains(A[i]))
                 li.add(A[i]);
                 i++;
                 j++;
                 k++;
             }
-            else{
+            else if(A[i]<B[j]){
+                i++;
+            }
+            else if(B[j]<C[k]){
                 j++;
+            }
+            else{
                 k++;
             }
         }
