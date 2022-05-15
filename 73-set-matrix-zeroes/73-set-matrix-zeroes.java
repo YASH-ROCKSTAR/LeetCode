@@ -7,8 +7,7 @@ class Solution {
             if(matrix[i][0]==0) col=0;
             for(int j=1;j<n;j++){
                 if(matrix[i][j]==0){
-                    //setting left and top most as zero in dummy matrix
-                    matrix[i][0]=matrix[0][j]=0;
+                    matrix[i][0]=matrix[0][j]=0;  //setting leftmost and topmost as zero
                 }
             }
         }
