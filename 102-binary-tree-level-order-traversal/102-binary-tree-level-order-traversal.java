@@ -26,6 +26,7 @@ class Solution {
             List<Integer> arr=new ArrayList<>();
             int size=q.size();
             while(size-->0){
+                //when every level of each node is complete peek it out and add in arraylist
                 TreeNode temp=q.poll();
             
                 arr.add(temp.val);
