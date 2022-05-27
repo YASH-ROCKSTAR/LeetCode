@@ -18,9 +18,8 @@ class Solution {
         int[] diameter=new int[1];
         diameter(root,diameter);
         return diameter[0];
-        
     }
-    public int diameter(TreeNode root,int[] diameter){
+    int diameter(TreeNode root,int[] diameter){
         if(root==null){
             return 0;
         }
