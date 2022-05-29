@@ -15,24 +15,13 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        Stack<TreeNode> stack=new Stack<>();
-        if(root==null){
-            return true;
+        return root==null || symmetric(root.left,root.right);
+    }
+    public boolean symmetric(TreeNode left,TreeNode right){
+        if(left==null || right==null){
+            return left==right;
         }
-        stack.push(root.right);
-        stack.push(root.left);
-        while(!stack.isEmpty()){
-            TreeNode n1=stack.pop();
-            TreeNode n2=stack.pop();
-            if(n1==null && n2==null) continue;
-            if(n1==null || n2==null || n1.val!=n2.val){
-                return false;
-            }
-            stack.push(n1.left);
-            stack.push(n2.right);
-            stack.push(n1.right);
-            stack.push(n2.left);
-        }
-        return true;
+        if(left.val!=right.val) return false;
+        return symmetric(left.left,right.right) && symmetric(left.right,right.left);
     }
 }
