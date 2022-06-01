@@ -22,6 +22,6 @@ class Solution {
             return left==right;
         }
         if(left.val!=right.val) return false;
-        return symmetric(left.left,right.right) && symmetric(left.right,right.left);
+         return symmetric(left.left,right.right) && symmetric(left.right,right.left); 
     }
 }
