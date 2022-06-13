@@ -26,7 +26,9 @@ class Solution {
         }
         int left=Math.max(0,maxpath(root.left,maxi));
         int right=Math.max(0,maxpath(root.right,maxi));
+        
         maxi[0]=Math.max(maxi[0],left+right+root.val);
+        
         return root.val+Math.max(left,right);
     }
 }
