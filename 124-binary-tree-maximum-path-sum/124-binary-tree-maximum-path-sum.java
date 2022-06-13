@@ -24,6 +24,7 @@ class Solution {
         if(root==null){
             return 0;
         }
+        //ignoring negative node.If node is negative then print zero
         int left=Math.max(0,maxpath(root.left,maxi));
         int right=Math.max(0,maxpath(root.right,maxi));
         
