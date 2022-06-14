@@ -14,42 +14,33 @@
  * }
  */
 class Tuple{
-    TreeNode node;
+    TreeNode root;
     int row;
     int col;
-    public Tuple(TreeNode _node ,int _row,int _col){
-        node=_node;
+    Tuple(TreeNode _root,int _row,int _col){
+        root=_root;
         row=_row;
         col=_col;
     }
 }
 class Solution {
     public List<List<Integer>> verticalTraversal(TreeNode root) {
-        //vertical,level,queue or multiset
-        TreeMap<Integer , TreeMap<Integer , PriorityQueue<Integer>>> map=new TreeMap<>();
-        Queue<Tuple> q=new LinkedList<Tuple>();
+        TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>> map=new TreeMap<>();
+        Queue<Tuple> q=new LinkedList<>();
         q.offer(new Tuple(root,0,0));
         while(!q.isEmpty()){
-            //poll kar liye tuple ko
             Tuple tuple=q.poll();
-            //node value assigning to node
-            TreeNode node=tuple.node;
-            //vertical
+            TreeNode node=tuple.root;
             int x=tuple.row;
-            //level
             int y=tuple.col;
             
-            //if for vertical treenode doesnot exist we create new treenode
             if(!map.containsKey(x)){
                 map.put(x,new TreeMap<>());
             }
-            //if for level priorityqueue does not exist we create new priorityqueue
             if(!map.get(x).containsKey(y)){
                 map.get(x).put(y,new PriorityQueue<>());
             }
-            //getting vertical . getting level . inseerting value into priority queue
             map.get(x).get(y).offer(node.val);
-            
             if(node.left!=null){
                 q.offer(new Tuple(node.left,x-1,y+1));
             }
@@ -57,18 +48,15 @@ class Solution {
                 q.offer(new Tuple(node.right,x+1,y+1));
             }
         }
-         //for every vertical we need list
         List<List<Integer>> li=new ArrayList<>();
-        for(TreeMap<Integer,PriorityQueue<Integer>> ys : map.values()){
-            //creating empty list for every vertical
+        for(TreeMap<Integer,PriorityQueue<Integer>> ss:map.values()){
             li.add(new ArrayList<>());
-            for(PriorityQueue<Integer> nodes : ys.values()){
+            for(PriorityQueue<Integer> nodes:ss.values()){
                 while(!nodes.isEmpty()){
-                    System.out.println(nodes.peek());
                     li.get(li.size()-1).add(nodes.poll());
                 }
             }
         }
-        return li;     
+        return li;        
     }
 }
