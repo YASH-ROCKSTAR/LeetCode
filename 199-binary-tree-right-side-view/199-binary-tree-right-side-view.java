@@ -16,18 +16,18 @@
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
         List<Integer> li=new ArrayList<>();
-        rightview(root,li,0);
+        rightside(root,li,0);
         return li;
     }
-    public void rightview(TreeNode root,List<Integer> res,int curr){
+    public void rightside(TreeNode root,List<Integer> li,int level){
         if(root==null){
             return;
         }
-        if(curr==res.size()){
-            res.add(root.val);
+        if(level==li.size()){
+            li.add(root.val);
         }
-        rightview(root.right,res,curr+1);
-        rightview(root.left,res,curr+1);
-
+        //here we are using reverse preorder traversal --> root,right,left
+        rightside(root.right,li,level+1);
+        rightside(root.left,li,level+1);
     }
 }
