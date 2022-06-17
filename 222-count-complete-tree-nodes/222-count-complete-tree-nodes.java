@@ -15,22 +15,19 @@
  */
 class Solution {
     public int countNodes(TreeNode root) {
-        if(root==null){
-            return 0;
-        }
-        int left=getleftheight(root);
-        int right=getrightheight(root);
+        if(root==null) return 0;
         
-        //if both leftand right height are equal then complete binary tree apply formula 
+        int left=getleft(root);
+        int right=getright(root);
+        
+        //if left and right are equal then apply formula of complete binary tree 
         if(left==right){
             return ((2<<(left))-1);
         }
-        else{
-            return countNodes(root.left)+countNodes(root.right)+1;
-        }
-        
+        // if left and right are not equal recursively calculate noode
+        return countNodes(root.left)+countNodes(root.right)+1;
     }
-    public int getrightheight(TreeNode root){
+    public int getright(TreeNode root){
         int count=0;
         while(root.right!=null){
             count++;
@@ -38,7 +35,7 @@ class Solution {
         }
         return count;
     }
-    public int getleftheight(TreeNode root){
+    public int getleft(TreeNode root){
         int count=0;
         while(root.left!=null){
             count++;
@@ -46,4 +43,5 @@ class Solution {
         }
         return count;
     }
+    
 }
