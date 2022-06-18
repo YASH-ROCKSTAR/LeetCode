@@ -15,26 +15,27 @@
  */
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        Map<Integer,Integer> map=new HashMap<>();
+        Map<Integer,Integer> mp=new HashMap<>();
         
         for(int i=0;i<inorder.length;i++){
-            map.put(inorder[i],i);
+             mp.put(inorder[i],i);
         }
-        TreeNode root=build(preorder,0,preorder.length-1,inorder,0,inorder.length-1,map);
+        TreeNode root=build(preorder,0,preorder.length-1,inorder,0,inorder.length-1,mp);
+        
         return root;
     }
-    public TreeNode build(int[] preorder,int prestart,int preend,int[] inorder,int instart,int inend,Map<Integer,Integer> map){
-        if(prestart>preend || instart>inend){
-            return null;
-        }
-        TreeNode root=new TreeNode(preorder[prestart]);
-        //getting values of inrrot means value after index 0
-        int inroot=map.get(root.val);
-        //count node from where it is to back where it start
-        int numleftcount=inroot-instart;
+    public TreeNode build(int[] preorder,int prestart,int preend,int[] inorder,int instart,int inend,Map<Integer,Integer> mp){
+        if(prestart>preend || instart>inend) return null;
         
-        root.left=build(preorder,prestart+1,prestart+numleftcount,inorder,instart,inend-1,map);
-        root.right=build(preorder,prestart+numleftcount+1,preend,inorder,inroot+1,inend,map);
+        //root value from preorder first
+        TreeNode root=new TreeNode(preorder[prestart]);
+        //iiner root value in inorder
+        int inroot=mp.get(root.val);
+        //now left part 
+        int left=inroot-instart;
+        
+        root.left=build(preorder,prestart+1,prestart+left,inorder,instart,inroot-1,mp);
+        root.right=build(preorder,prestart+left+1,preend,inorder,inroot+1,inend,mp);
         
         return root;
         
