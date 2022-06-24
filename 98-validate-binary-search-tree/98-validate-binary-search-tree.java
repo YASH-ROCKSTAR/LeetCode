@@ -13,30 +13,13 @@
  *     }
  * }
  */
-public class BSTPair{
-    boolean isbst=true;
-    long min=Long.MAX_VALUE;
-    long max=Long.MIN_VALUE;
-}
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        return valid(root).isbst;
+        return Valid(root,Long.MIN_VALUE,Long.MAX_VALUE);
     }
-     public BSTPair valid(TreeNode root){
-        if(root==null){
-            return new BSTPair();
-        }
-        BSTPair lpbst=valid(root.left);
-        BSTPair rpbst=valid(root.right);
-        BSTPair spbst=new BSTPair();
-        spbst.min=Math.min(lpbst.min,Math.min(rpbst.min,root.val));
-        spbst.max=Math.max(lpbst.max,Math.max(rpbst.max,root.val));
-        if(lpbst.isbst && rpbst.isbst &&(lpbst.max < root.val && rpbst.min>root.val)){
-            spbst.isbst=true;
-                     return spbst;
-
-        }
-         spbst.isbst=false;
-        return spbst;
+    public boolean Valid(TreeNode root,long minval,long maxval){
+        if(root==null) return true;
+        if(root.val>=maxval || root.val<=minval) return false;
+        return Valid(root.left,minval,root.val) && Valid(root.right,root.val,maxval);
     }
 }
