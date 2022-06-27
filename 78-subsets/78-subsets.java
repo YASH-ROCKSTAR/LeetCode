@@ -1,24 +1,22 @@
 class Solution {
     List<List<Integer>> ans;
     public List<List<Integer>> subsets(int[] nums) {
-        ans=new ArrayList();
-        
-        if(nums==null ||nums.length==0) return ans;
-        solve(nums,new ArrayList<>(),0);
+        ans=new ArrayList<>();
+        if(nums==null || nums.length==0){
+            return ans;
+        }
+        helper(nums,new ArrayList<>(),0);
         return ans;
     }
-    public void solve(int[] nums,ArrayList<Integer> out,int index){
-       
-        if(index>=nums.length){
-            ans.add(new ArrayList<>(out));
+    public void helper(int[] nums,ArrayList<Integer> sub,int i){
+        if(i>=nums.length){
+            ans.add(new ArrayList<>(sub));
             return;
         }
-         //include
-        out.add(nums[index]);
-        solve(nums,out,index+1);
-        out.remove(out.size()-1);
-        
-        //exclude
-        solve(nums,out,index+1);
+        sub.add(nums[i]);
+        helper(nums,sub,i+1);
+        //remove ith element
+        sub.remove(sub.size()-1);
+        helper(nums,sub,i+1);
     }
 }
