@@ -13,10 +13,13 @@ class Solution {
             ans.add(new ArrayList<>(sub));
             return;
         }
-        sub.add(nums[i]);
-        helper(nums,sub,i+1);
-        //remove ith element
-        sub.remove(sub.size()-1);
-        helper(nums,sub,i+1);
+        else{
+            sub.add(nums[i]);
+        
+            helper(nums,sub,i+1);
+            //remove ith element
+            sub.remove(sub.size()-1);
+            helper(nums,sub,i+1);
+        }
     }
 }
