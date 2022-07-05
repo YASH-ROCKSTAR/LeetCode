@@ -1,26 +1,23 @@
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> ans=new ArrayList<>();
-        solve(0,candidates,target,ans,new ArrayList<>());
+        helper(0,candidates,target,new ArrayList<>(),ans);
         return ans;
     }
-    public void solve(int index,int[] arr,int target,List<List<Integer>> ans,List<Integer> ds){
-        // when recursion tree reaches to last index
+    public void helper(int index,int[] arr,int target,List<Integer> li,List<List<Integer>> ans){
         if(index==arr.length){
-            // when target get zero
             if(target==0){
-                ans.add(new ArrayList<>(ds));
+                ans.add(new ArrayList<>(li));
             }
             return;
         }
-        //now checking if our index value is less than target then adding it to data structure
         if(arr[index]<=target){
-            ds.add(arr[index]);
-            //when picking the element
-            solve(index,arr,target-arr[index],ans,ds);
-            ds.remove(ds.size()-1);
+            li.add(arr[index]);
+            //picking the element
+            helper(index,arr,target-arr[index],li,ans);
+            li.remove(li.size()-1);
         }
-        //when not pricking the element
-        solve(index+1,arr,target,ans,ds);
+        //not picking element
+        helper(index+1,arr,target,li,ans);
     }
 }
