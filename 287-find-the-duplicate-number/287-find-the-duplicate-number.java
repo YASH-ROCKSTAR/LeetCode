@@ -1,5 +1,6 @@
 class Solution {
     public int findDuplicate(int[] nums) {
+        //write
         int slow=nums[0];
         int fast=nums[0];
         
@@ -14,5 +15,7 @@ class Solution {
             fast=nums[fast];
         }
         return slow;
+            
+            
     }
 }
