@@ -10,13 +10,14 @@ class Solution {
                 mid++;
             }else if(nums[mid]==1){
                 mid++;
-            }else{
+            }
+            else{
                 swap(mid,high,nums);
                 high--;
             }
         }
     }
-    public void swap(int i,int j,int[]nums){
+    public void swap(int i,int j,int[] nums){
         int temp=nums[i];
         nums[i]=nums[j];
         nums[j]=temp;
