@@ -6,28 +6,31 @@ class Solution {
         for(int[] row:dp){
             Arrays.fill(row,-1);
         }
+        int[] prev=new int[m];
         for(int i=0;i<m;i++){
+            int[] temp=new int[n];
             for(int j=0;j<n;j++){
                 if(i==0 && j==0){
-                    dp[i][j]=grid[i][j];
+                    temp[j]=grid[i][j];
                 }
                 else{
                     int up=grid[i][j];
                     if(i>0){
-                        up+=dp[i-1][j];
+                        up+=prev[j];
                     }else{
                         up+=(int)Math.pow(10,9);
                     }
                     int left=grid[i][j];
                     if(j>0){
-                        left+=dp[i][j-1];
+                        left+=temp[j-1];
                     }else{
                         left+=(int)Math.pow(10,9);
                     }
-                    dp[i][j]=Math.min(up,left);
+                    temp[j]=Math.min(up,left);
                 }
             }
+            prev=temp;
         }
-        return dp[m-1][n-1];
+        return prev[n-1];
     }
 }
