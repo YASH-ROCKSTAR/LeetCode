@@ -7,7 +7,7 @@ class Solution {
         for(int i=0;i<nums.length-1;i++){
             curr=Math.max(curr,i+nums[i]);
             
-            if(i==max){
+            if(i>=max){
                 ans++;
                 max=curr;
             }
