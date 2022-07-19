@@ -1,11 +1,10 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> res=new ArrayList<>();
+        List<List<Integer>> li=new ArrayList<>();
         List<Integer> row,prev=null;
         for(int i=0;i<numRows;i++){
             row=new ArrayList<>();
             for(int j=0;j<=i;j++){
-                //if row has first and last column then 1 will bw added
                 if(j==0 || j==i){
                     row.add(1);
                 }else{
@@ -13,8 +12,8 @@ class Solution {
                 }
             }
             prev=row;
-            res.add(row);
+            li.add(row);
         }
-        return res;
+        return li;
     }
 }
