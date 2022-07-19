@@ -1,18 +1,18 @@
 class Solution {
-    public int jump(int[] nums) {
-        int n=nums.length;
-        int ans=0;
-        int max=0;
-        int curr=0;
-        for(int i=0;i<nums.length-1;i++){
-            curr=Math.max(curr,i+nums[i]);
-            
-            if(i>=max){
-                ans++;
-                max=curr;
-            }
+    Integer[] dp;
+    public int solve(int ind,int[] nums){
+        if(ind==nums.length-1) return 0;
+        if(ind>=nums.length) return Integer.MAX_VALUE-1;
+        if(dp[ind]!=null) return dp[ind];
+        int min=Integer.MAX_VALUE-1;
+        for(int i=1;i<=nums[ind];i++){
+            min=Math.min(min,1+solve(ind+i,nums));
         }
-        return ans;
-        
+        return dp[ind]=min;
+    }
+    public int jump(int[] nums) {
+        dp=new Integer[nums.length];
+        // Arrays.fill(dp,Integer.MAX_VALUE);
+        return solve(0,nums);
     }
 }
