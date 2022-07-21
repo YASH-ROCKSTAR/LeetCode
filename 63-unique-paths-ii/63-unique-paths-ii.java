@@ -1,37 +1,25 @@
 class Solution {
-    public int uniquePathsWithObstacles(int[][] arr) {
+    public int solve(int i,int j,int[][] arr,int[][] dp){
+       
+        if(i<0 || j<0) return 0;
         
-        int m=arr.length;
-        int n=arr[0].length;
+        if(arr[i][j]==1) return 0;
         
-//         int[][] dp=new int[m][n];
+         if(i==0 && j==0) return 1;    
         
-//         for(int[] row:dp){
-//             Arrays.fill(row,-1);
-//         }
-        int[] prev=new int[m];
-        for(int i=0;i<m;i++){
-            int[] temp=new int[n];
-            for(int j=0;j<n;j++){
-                if(i>=0 && j>=0 && arr[i][j]==1){
-                    temp[j]=0;
-                    continue;
-                }
-                if(i==0 && j==0){
-                    temp[j]=1;
-                    continue;
-                }
-                int up=0;
-                int left=0;
-
-                if(i>0) up=prev[j];
-                if(j>0) left=temp[j-1];;
-
-                temp[j]=up+left;
-            }
-            prev=temp;
-        }
-        return prev[n-1];
+        if(dp[i][j]!=-1) return dp[i][j];
+        int up=solve(i-1,j,arr,dp);
+        int left=solve(i,j-1,arr,dp);
+        
+        return dp[i][j]=up+left;
     }
-    
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        int m=obstacleGrid.length;
+        int n=obstacleGrid[0].length;
+        int[][] dp=new int[m+1][n+1];
+        for(int[] row:dp){
+            Arrays.fill(row,-1);
+        }
+        return solve(m-1,n-1,obstacleGrid,dp);
+    }
 }
