@@ -1,14 +1,14 @@
 class Solution {
-    public int solve(int i,int j,int m,int[][] matrix,int[][] dp){
+    public int solve(int i,int j,int m,int[][] arr,int[][] dp){
         if(j<0 || j>=m) return (int)Math.pow(10,9);
         
         if(i==0){
-            return matrix[0][j];
+            return arr[0][j];
         }
         if(dp[i][j]!=-1) return dp[i][j];
-        int up=matrix[i][j]+solve(i-1,j,m,matrix,dp);
-        int leftdiag=matrix[i][j]+solve(i-1,j-1,m,matrix,dp);
-        int rightdiag=matrix[i][j]+solve(i-1,j+1,m,matrix,dp);
+        int up=arr[i][j]+solve(i-1,j,m,arr,dp);
+        int leftdiag=arr[i][j]+solve(i-1,j-1,m,arr,dp);
+        int rightdiag=arr[i][j]+solve(i-1,j+1,m,arr,dp);
         
         return dp[i][j]=Math.min(up,Math.min(leftdiag,rightdiag));
     }
@@ -20,8 +20,8 @@ class Solution {
             Arrays.fill(row,-1);
         }
         int mini=Integer.MAX_VALUE;
-        for(int j=0;j<n;j++){
-            int ans=solve(m-1,j,m,matrix,dp);
+        for(int i=0;i<n;i++){
+            int ans=solve(m-1,i,m,matrix,dp);
             mini=Math.min(mini,ans);
         }
         return mini;
