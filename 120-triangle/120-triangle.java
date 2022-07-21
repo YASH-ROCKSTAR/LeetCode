@@ -7,7 +7,6 @@ class Solution {
         }
         for(int i=n-2;i>=0;i--){
             for(int j=i;j>=0;j--){
-                
                 int down=triangle.get(i).get(j)+dp[i+1][j];
                 int diag=triangle.get(i).get(j)+dp[i+1][j+1];
                 
@@ -16,5 +15,4 @@ class Solution {
         }
         return dp[0][0];
     }
-   
 }
