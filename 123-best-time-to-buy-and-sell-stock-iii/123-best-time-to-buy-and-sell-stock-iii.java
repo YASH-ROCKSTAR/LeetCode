@@ -1,38 +1,26 @@
 class Solution {
+    public int solve(int ind,int buy,int[] price,int cap,int[][][] dp){
+        int n=price.length;
+        if(ind==n || cap==0) return 0;
+        
+        if(dp[ind][buy][cap]!=-1) return dp[ind][buy][cap];
+        int profit=0;
+        if(buy==1){
+           profit=Math.max(-price[ind]+solve(ind+1,0,price,cap,dp),0+solve(ind+1,1,price,cap,dp));
+        }
+        if(buy==0){
+            profit=Math.max(price[ind]+solve(ind+1,1,price,cap-1,dp),0+solve(ind+1,0,price,cap,dp));
+        }
+        return dp[ind][buy][cap]=profit; 
+    }
     public int maxProfit(int[] prices) {
-        int n=prices.length;
-        if(n==0){
-            return 0;
+       int n=prices.length;
+       int[][][] dp=new int[n][2][3];
+        for(int[][] ro:dp){
+            for(int[] ro1:ro){
+                Arrays.fill(ro1,-1);
+            }
         }
-        int[] left=new int[n];
-        int[] right=new int[n];
-        //bidirectional dp
-        //left to right traversal
-        int min=prices[0];
-        for(int i=1;i<n;i++){
-            //update the buy prices
-            if(prices[i]<min)
-                min=prices[i];
-            //calculate current profit
-            int profit=prices[i]-min;
-            //fill
-            left[i]=Math.max(left[i-1],profit);
-        }
-        //right to left
-        int max=prices[n-1];
-        for(int i=n-2;i>=0;i--){
-            //update sell prices
-            if(prices[i]>max)
-                max=prices[i];
-            int profit=max-prices[i];
-            
-            //update right
-            right[i]=Math.max(right[i+1],profit);
-        }
-        int maxprofit=0;
-        for(int i=0;i<n;i++){
-            maxprofit=Math.max(maxprofit,left[i]+right[i]);
-        }
-        return maxprofit;
+       return solve(0,1,prices,2,dp);
     }
 }
