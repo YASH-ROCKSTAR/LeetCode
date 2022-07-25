@@ -6,6 +6,7 @@ class Solution {
         for(int i=1;i<n;i++){
             int cost=prices[i]-mini;
             profit=Math.max(profit,cost);
+            //as dp is remembering the past and so we are remembring the min;
             mini=Math.min(mini,prices[i]);
         }
         return profit;
