@@ -1,13 +1,27 @@
 class Solution {
     public int maxProductDifference(int[] nums) {
-        int max=Integer.MIN_VALUE;
-        int min=Integer.MAX_VALUE;
+        int firmax=Integer.MIN_VALUE,secmax=Integer.MIN_VALUE;
         for(int i=0;i<nums.length;i++){
-            for(int j=i+1;j<nums.length;j++){
-                max=Math.max(max,nums[i]*nums[j]);
-                min=Math.min(min,nums[i]*nums[j]);
+            if(nums[i]>firmax){
+                secmax=firmax;
+                firmax=nums[i];
+            }else{
+                if(nums[i]>secmax){
+                    secmax=nums[i];
+                }
             }
         }
-        return max-min;
+        int firmin=Integer.MAX_VALUE,secmin=Integer.MAX_VALUE;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]<firmin){
+                secmin=firmin;
+                firmin=nums[i];
+            }else{
+                if(nums[i]<secmin){
+                    secmin=nums[i];
+                }
+            }
+        }
+        return secmax*firmax-secmin*firmin;
     }
 }
