@@ -1,14 +1,19 @@
 class Solution {
-    public int maxSubArray(int[] a) {
+    public int maxSubArray(int[] nums) {
         int sum=0;
-        int maxi=a[0];
-        for(int i:a){
+        int max=nums[0];
+        
+        for(int i:nums){
             sum=sum+i;
-            if(sum>maxi){
-                maxi=sum;
-            }if(sum<0){
+            
+            if(max<sum){
+                max=sum;
+            }
+            if(sum<0){
                 sum=0;
             }
-        }return maxi;
+        }
+        return max;
+        
     }
 }
