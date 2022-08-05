@@ -12,19 +12,18 @@ class Solution {
         }
         for(int i:nums2){
             if(mp2.containsKey(i)){
-                mp2.put(i,mp2.get(i)+1);
-            }else{
+                mp2.put( i,mp2.get(i)+1);
+            }
+            else{
                 mp2.put(i,1);
             }
         }
         for(Integer kk:mp1.keySet()){
             if(mp2.containsKey(kk)){
-                int x=Math.min(mp1.get(kk),mp2.get(kk));
-                // System.out.println(mp1.get(kk)+" "+ mp2.get(kk));
-                // System.out.println(mp1.keySet());
+                int x=Math.min(mp2.get(kk),mp1.get(kk));
+                
                 while(x-->0){
                     li.add(kk);
-                    
                 }
             }
         }
@@ -32,7 +31,7 @@ class Solution {
         for(int i=0;i<arr.length;i++){
             arr[i]=li.get(i);
         }
+        
         return arr;
-
     }
 }
