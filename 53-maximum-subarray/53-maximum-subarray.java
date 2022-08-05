@@ -2,11 +2,10 @@ class Solution {
     public int maxSubArray(int[] nums) {
         int sum=0;
         int max=nums[0];
-        
         for(int i:nums){
             sum=sum+i;
             
-            if(max<sum){
+            if(sum>max){
                 max=sum;
             }
             if(sum<0){
