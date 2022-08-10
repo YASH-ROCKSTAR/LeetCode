@@ -1,16 +1,16 @@
 class Solution {
-    public boolean isPalindrome(int temp) {
-        int x=temp;
-        if(x<0){
+    public boolean isPalindrome(int x) {
+        int temp=x;
+        if(temp<0){
             return false;
         }
         int rev=0;
-        while(x>0){
-            int rem=x%10;
+        while(temp>0){
+            int rem=temp%10;
             rev=rev*10+rem;
-            x=x/10;
+            temp=temp/10;
         }
-        if(temp==rev){
+        if(x==rev){
             return true;
         }
         return false;
