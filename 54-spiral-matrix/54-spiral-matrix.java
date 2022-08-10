@@ -8,19 +8,17 @@ class Solution {
         int rowend=matrix.length-1;
         int colbeg=0;
         int colend=matrix[0].length-1;
+        
         while(rowbeg<=rowend && colbeg<=colend){
-            
             //right
             for(int i=colbeg;i<=colend;i++){
                 li.add(matrix[rowbeg][i]);
             }
             rowbeg++;
-            //down
             for(int i=rowbeg;i<=rowend;i++){
                 li.add(matrix[i][colend]);
             }
             colend--;
-            
             if(rowbeg<=rowend){
                 for(int i=colend;i>=colbeg;i--){
                     li.add(matrix[rowend][i]);
@@ -35,6 +33,5 @@ class Solution {
             }
         }
         return li;
-        
     }
 }
