@@ -6,7 +6,6 @@ class Solution {
         String s=countAndSay(n-1);
         StringBuilder sb=new StringBuilder();
         int c=1;
-        
         for(int i=0;i<s.length()-1;i++){
             if(s.charAt(i)==s.charAt(i+1)){
                 c++;
@@ -18,7 +17,7 @@ class Solution {
         }
         sb.append(c);
         sb.append(s.charAt(s.length()-1));
-                  
-        return sb.toString();          
+        
+        return sb.toString();
     }
 }
