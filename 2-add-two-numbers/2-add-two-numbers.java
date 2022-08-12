@@ -25,10 +25,11 @@ class Solution {
             }
             sum+=carry;
             carry=sum/10;
-            ListNode node=new ListNode(sum%10);
-            temp.next=node;
+            ListNode li=new ListNode(sum%10);
+            temp.next=li;
             temp=temp.next;
         }
+        
         return dummy.next;
     }
 }
