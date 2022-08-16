@@ -18,7 +18,9 @@ class Solution {
         return co;
     }
     public ListNode middleNode(ListNode head) {
+        //count len of list
         int length=len(head);
+        //then find len/2 so that we can allocate middle of linke dlist
         int ans=(length/2);
         int count=0;
         ListNode temp=head;
