@@ -9,14 +9,23 @@
  * }
  */
 class Solution {
-    public ListNode middleNode(ListNode head) {
-        ListNode slowptr=head;
-        ListNode fastptr=head;
-        while(fastptr!=null && fastptr.next!=null){
-            slowptr=slowptr.next;
-            fastptr=fastptr.next.next;
+    public int len(ListNode head){
+        int co=0;
+        while(head!=null){
+            co++;
+            head=head.next;
         }
-        return slowptr;
-        
+        return co;
+    }
+    public ListNode middleNode(ListNode head) {
+        int length=len(head);
+        int ans=(length/2);
+        int count=0;
+        ListNode temp=head;
+        while(count<ans){
+            temp=temp.next;
+            count++;
+        }
+        return temp;
     }
 }
