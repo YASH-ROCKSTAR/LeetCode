@@ -9,22 +9,21 @@
  * }
  */
 class Solution {
+    public ListNode reverse(ListNode head,ListNode prev){
+        if(head==null){
+            return prev;
+        }
+        ListNode forward=head.next;
+        //prev=curr in itervative for moving one time
+        
+        head.next=prev;
+        return reverse(forward,head);
+        
+        
+    }
     public ListNode reverseList(ListNode head) {
         
-        if(head==null || head.next==null){
-            return head;
-        }
-        ListNode prev=null;
-        ListNode curr=head;
-        ListNode forward=null;
-        while(curr!=null){
-            //keeping track of next node
-            forward=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=forward;
-        }
-        //last pointer is on prev pointing to head;
-        return prev;
+        return reverse(head,null);
+       
     }
 }
