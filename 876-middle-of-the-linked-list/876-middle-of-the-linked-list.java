@@ -9,25 +9,18 @@
  * }
  */
 class Solution {
-    public int len(ListNode head){
-        int co=0;
-        while(head!=null){
-            co++;
-            head=head.next;
-        }
-        return co;
-    }
+    
     public ListNode middleNode(ListNode head) {
-        //count len of list
-        int length=len(head);
-        //then find len/2 so that we can allocate middle of linke dlist
-        int ans=(length/2);
-        int count=0;
-        ListNode temp=head;
-        while(count<ans){
-            temp=temp.next;
-            count++;
+        if(head==null ||head.next==null){
+            return head;
         }
-        return temp;
+        ListNode slow=head;
+        ListNode fast=head;
+        
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
     }
 }
