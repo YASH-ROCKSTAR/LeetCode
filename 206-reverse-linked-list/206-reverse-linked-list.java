@@ -9,21 +9,22 @@
  * }
  */
 class Solution {
-    public ListNode reverse(ListNode head,ListNode prev){
-        if(head==null){
-            return prev;
+    public ListNode reverse(ListNode head){
+        if(head==null || head.next==null){
+            return head;
         }
-        ListNode forward=head.next;
-        //prev=curr in itervative for moving one time
+        ListNode chota=reverse(head.next);
         
-        head.next=prev;
-        return reverse(forward,head);
+        head.next.next=head;
+        // marking prev head as null
+        head.next=null;
         
+        return chota;
         
     }
     public ListNode reverseList(ListNode head) {
         
-        return reverse(head,null);
+        return reverse(head);
        
     }
 }
