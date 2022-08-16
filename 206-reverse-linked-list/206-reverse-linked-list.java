@@ -13,6 +13,7 @@ class Solution {
         if(head==null || head.next==null){
             return head;
         }
+        //HERE NEXT NODE AFTER HEAD WILL TREATED AS RECURSION THAT WILL FIRST REVERSE THEN AFTER FIRST NODE IS KEP AT LASTG WITH NULL Marked
         ListNode chota=reverse(head.next);
         
         head.next.next=head;
