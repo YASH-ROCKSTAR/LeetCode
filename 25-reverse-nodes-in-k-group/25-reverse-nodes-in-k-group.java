@@ -26,6 +26,7 @@ class Solution {
             temp=temp.next;
             i++;
         }
+        // /if there are not k group presertn in group
         if(temp.next==null && i<k) return head;
         while(curr!=null && count<k){
             next=curr.next;
