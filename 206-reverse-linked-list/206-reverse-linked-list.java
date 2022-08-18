@@ -9,23 +9,21 @@
  * }
  */
 class Solution {
-    public ListNode reverse(ListNode head){
+    public ListNode reverseList(ListNode head) {
         if(head==null || head.next==null){
             return head;
         }
-        //HERE NEXT NODE AFTER HEAD WILL TREATED AS RECURSION THAT WILL FIRST REVERSE THEN AFTER FIRST NODE IS KEP AT LASTG WITH NULL Marked
-        ListNode chota=reverse(head.next);
+        ListNode curr=head;
+        ListNode prev=null;
+        ListNode forward=null;
+        while(curr!=null){
+            forward=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=forward;
+            
+        }
+        return prev;
         
-        head.next.next=head;
-        // marking prev head as null
-        head.next=null;
-        
-        return chota;
-        
-    }
-    public ListNode reverseList(ListNode head) {
-        
-        return reverse(head);
-       
     }
 }
