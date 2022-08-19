@@ -16,8 +16,8 @@ class Solution {
                 q.add(l);
             }
         }
-        ListNode dummy=new ListNode(-1);
-        ListNode point=dummy;
+        ListNode dum=new ListNode();
+        ListNode point=dum;
         while(!q.isEmpty()){
             point.next=q.poll();
             point=point.next;
@@ -26,6 +26,7 @@ class Solution {
                 q.add(point.next);
             }
         }
-        return dummy.next;
+        return dum.next;
+        
     }
 }
