@@ -10,7 +10,7 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        Queue<ListNode> q=new PriorityQueue<>((a,b)->a.val-b.val);
+        Queue<ListNode> q=new PriorityQueue<>((a,b)->(a.val-b.val));
         for(ListNode l:lists){
             if(l!=null){
                 q.add(l);
@@ -27,6 +27,5 @@ class Solution {
             }
         }
         return dum.next;
-        
     }
 }
