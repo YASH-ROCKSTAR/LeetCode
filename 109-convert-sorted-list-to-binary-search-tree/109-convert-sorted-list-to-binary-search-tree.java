@@ -31,32 +31,33 @@ class Solution {
         if(head==null){
             return null;
         }
-        ListNode node=getmiddlenode(head);
+        ListNode node=middle(head);
+        TreeNode root=new TreeNode(node.val);
         if(head==node){
             return new TreeNode(node.val);
         }
-        TreeNode root=new TreeNode(node.val);
         root.left=helper(head);
         root.right=helper(node.next);
         
         return root;
+        
     }
-    public ListNode getmiddlenode(ListNode head){
-        if(head==null){
-            return null;
+    public ListNode middle(ListNode head){
+        if(head==null || head.next==null){
+            return head;
         }
-        ListNode slowptr=head;
-        ListNode fastptr=head;
-        ListNode prev=null;
-        while(fastptr!=null && fastptr.next!=null){
-            prev=slowptr;
-            slowptr=slowptr.next;
-            fastptr=fastptr.next.next;
+        ListNode slow=head;
+        ListNode fast=slow;
+        ListNode prev=slow;
+        while(fast!=null && fast.next!=null){
+            prev=slow;
+            slow=slow.next;
+            fast=fast.next.next;
         }
-        //cut it to stop traversal
         if(prev!=null){
             prev.next=null;
         }
-        return slowptr;
+        
+        return slow;
     }
 }
