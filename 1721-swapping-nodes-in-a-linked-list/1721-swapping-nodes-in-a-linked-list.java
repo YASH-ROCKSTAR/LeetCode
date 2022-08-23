@@ -23,6 +23,6 @@ class Solution {
         first.val=second.val;
         second.val=temp;
         
-    return head;
+        return head;
     }
 }
