@@ -10,38 +10,38 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-         l1=reverse(l1);
-        l2=reverse(l2);
+        Stack<Integer> st1=addtostack(l1);
+        Stack<Integer> st2=addtostack(l2);
         
-        ListNode dummy=new ListNode();
-        ListNode temp=dummy;
+        
         int carry=0;
-        while(l1!=null || l2!=null || carry==1){
+        ListNode temp=null;
+        while(!st1.isEmpty() || !st2.isEmpty() ||carry==1){
             int sum=0;
-            if(l1!=null){
-                sum+=l1.val;
-                l1=l1.next;
+            if(!st1.isEmpty()){
+                sum+=st1.pop();
             }
-            if(l2!=null){
-                sum+=l2.val;
-                l2=l2.next;
+            if(!st2.isEmpty()){
+                sum+=st2.pop();
             }
             sum+=carry;
             carry=sum/10;
             ListNode node=new ListNode(sum%10);
-            temp.next=node;
-            temp=temp.next;
+            
+            node.next=temp;
+            temp=node;    
+            
         }
-        return reverse(dummy.next);
+        
+        return temp;
+        
     }
-    public ListNode reverse(ListNode head){
-        ListNode newnode=null;
+    public Stack<Integer> addtostack(ListNode head){
+        Stack<Integer> st=new Stack<>();
         while(head!=null){
-            ListNode next=head.next;
-            head.next=newnode;
-            newnode=head;
-            head=next;
+            st.add(head.val);
+            head=head.next;
         }
-        return newnode;
+        return st;
     }
 }
