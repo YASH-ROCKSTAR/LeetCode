@@ -1,25 +1,20 @@
 class Solution {
-    List<List<Integer>> ans;
+    public void fun(int ind,int[] num,List<Integer> ds,List<List<Integer>> li){
+       if(ind==num.length){
+           li.add(new ArrayList<>(ds));
+           return;
+       }
+       ds.add(num[ind]);
+       fun(ind+1,num,ds,li);
+       ds.remove(ds.size()-1);
+       fun(ind+1,num,ds,li);
+    }
     public List<List<Integer>> subsets(int[] nums) {
-        ans=new ArrayList<>();
-        if(nums==null || nums.length==0){
-            return ans;
-        }
-        helper(nums,new ArrayList<>(),0);
-        return ans;
-    }
-    public void helper(int[] nums,ArrayList<Integer> sub,int i){
-        if(i>=nums.length){
-            ans.add(new ArrayList<>(sub));
-            return;
-        }
-        else{
-            sub.add(nums[i]);
+        List<List<Integer>> li=new ArrayList<>();
+        List<Integer> ds=new ArrayList<>();
+        fun(0,nums,ds,li);
+        return li;
         
-            helper(nums,sub,i+1);
-            //remove ith element
-            sub.remove(sub.size()-1);
-            helper(nums,sub,i+1);
-        }
     }
+    
 }
