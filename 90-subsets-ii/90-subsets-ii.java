@@ -1,23 +1,20 @@
 class Solution {
-    List<List<Integer>> ans;
-    public void helper(int[] nums,ArrayList<Integer> sub,int i){
-        if(i>=nums.length){
-            ans.add(new ArrayList<>(sub));
+    public void func(int ind,int[] nums,List<Integer> ds,List<List<Integer>> li){
+        if(ind==nums.length){
+            li.add(new ArrayList<>(ds));
             return;
         }
-        else{
-            sub.add(nums[i]);
-            helper(nums,sub,i+1);
-            //remove ith element
-            sub.remove(sub.size()-1);
-            while(i+1<nums.length && nums[i]==nums[i+1]) i++;
-            helper(nums,sub,i+1);
-        }
-    } 
+        ds.add(nums[ind]);
+        func(ind+1,nums,ds,li);
+        ds.remove(ds.size()-1);
+        while(ind+1<nums.length && nums[ind]==nums[ind+1]) ind++; 
+        func(ind+1,nums,ds,li);
+    }
     public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> li=new ArrayList<>();
+        List<Integer> ds=new ArrayList<>();
         Arrays.sort(nums);
-        ans=new ArrayList<>();
-        helper(nums,new ArrayList<>(),0);
-        return ans;
+        func(0,nums,ds,li);
+        return li;
     }
 }
