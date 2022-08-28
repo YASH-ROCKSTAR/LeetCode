@@ -24,6 +24,7 @@ class Solution {
         //now swap 3 index with 3 and 1 so it become {2,3,1}
         //now it {2,1,3} is on third index swap itself and swap third value of {2,3,1}
         //again return and go on 3 call that is {3,1,2} and same thing happen generate permutataion like this 
+        //TC- O(!n)*N
         for(int i=pos;i<nums.length;i++){
             swap(nums,pos,i);
             func(pos+1,nums,li);
