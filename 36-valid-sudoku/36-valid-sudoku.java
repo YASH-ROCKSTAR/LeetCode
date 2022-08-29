@@ -2,26 +2,23 @@ class Solution {
     public boolean isValidSudoku(char[][] board) {
         return solve(board);
     }
-    
     public boolean solve(char[][] board){
         boolean ans=true;
         for(int i=0;i<9;i++){
             for(int j=0;j<9;j++){
-                if(board[i][j]!='.'){
-                    char c=board[i][j];
+                char c=board[i][j];
+                if(c!='.'){
                     board[i][j]='.';
-                    ans=isValid(board,i,j,c);
+                    if(!isValid(board,i,j,c)){
+                        return false;
+                    }
                     board[i][j]=c;
                     
-                }
-                if(!ans){
-                    return ans;
                 }
             }
         }
         return true;
     }
-    
     boolean isValid(char[][] board,int row,int col,char c){
         for(int i=0;i<9;i++){
             //each column
