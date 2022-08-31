@@ -2,9 +2,11 @@ class Solution {
     List<String> res=new ArrayList<>();
     HashSet<String> visited=new HashSet<>();
     
+    //so firstly checking that which of parenthesis is invalid
+    //so pushing the ( bracket into stack and and then checking if ) bracket is there and checking that top of stack is (then pop ( bracket from stack and whatever bracket is extra put into hashset and getting size of that stack
     public int getMinInvalid(String s){
         Stack<Character> st=new Stack<>();
-        // int i=0;
+        
         for(int i=0;i<s.length();i++){
             if(s.charAt(i)=='('){
                 st.push('(');
@@ -20,6 +22,8 @@ class Solution {
         }
         return st.size();
     }
+    //so we will be checking if duplicate set is not present of same and set is not containing that 
+    //brackets then it is put in set otherwise if it is present is it not again put
     void solve(String s,int minInv,HashSet<String> duplicate){
         if(minInv==0){
             int now=getMinInvalid(s);
@@ -31,7 +35,12 @@ class Solution {
             }
             return;
         }
+        //here we will be spliting string into left and right part as we see if any invalid parenthesis is present then ten from where we split the string into two part so valid parenthesis is formed
+        //like "()())()" so here we see if we remove 1 bracket ")())() then it is not valid parenthesis" and if we remove 2 bracket "(())()" then it is valid parenthesis
+        //now removing 3 bracket "()))()" now it is not valid parentesis then removing 4 breakcet "()()()" so it a valid parenthesisand so on 
         for(int i=0;i<s.length();i++){
+            // like ()())() here 4th no bracket ) if removed then it is formed left =()( and right= )()
+            //by combining them they are valid bracket
             String left=s.substring(0,i);
             String right=s.substring(i+1);
             
@@ -47,61 +56,3 @@ class Solution {
         return res;
     }
 }
-// class Solution {    
-//     public List<String> removeInvalidParentheses(String str) {
-//         int minrem = getMin(str); // gets the minimum no. of braces to be removed
-//         solution(str, minrem, new HashSet<>()); //hashset to check if ans is unique or not
-//         return result;
-//     }
-    
-//     public static int getMin(String str){
-//        Stack<Character> st = new Stack<>();
-
-//         for( int i = 0; i < str.length(); i++ ){
-//             char ch = str.charAt(i);
-//             if( ch == ')' ){// closing brace pops if opening brace is at the top
-//                             // otherwise pushed
-//                 if( st.size() > 0 && st.peek() == '(' ){
-//                     st.pop();
-//                 }else{
-//                     st.push(ch);
-//                 }
-//             }else if( ch == '(' ) { // opening brace is always pushed
-//                 st.push(ch);
-//             }else{ // if there are chars like a b c .. etc in the seq just continue
-//                 continue;
-//             }
-//         }
-//         return st.size();//elements left in stack were not balanced, and are to be removed
-//     }
-    
-//     List<String> result = new ArrayList<>(); // ans arraylist
-//     HashSet<String> visited = new HashSet<>(); // visited string hashset, for optimization
-    
-//     private void solution(String str, int mra, HashSet<String> duplicate){
-//         // mra  --> minimum removes allowed
-//         if(mra == 0){
-//             int now = getMin(str);// after we have removed required no. of braces, the string should be balanced
-//             if(now == 0){
-//                 if(duplicate.contains(str) == false){
-//                     duplicate.add(str); // hashset to avoid duplicates
-//                     result.add(str); // result arraylist
-//                 }
-//             }
-//             return;
-//         }
-        
-//         for(int i = 0; i < str.length(); i++){
-//     // we would remove each brace one by one and check if the seq is now balanced or not, in the base case
-//     // for eg. in "abcdef" if we are removing 'c',  i would be on 2, so
-            
-//             String left = str.substring(0, i);  // ab
-//             String right = str.substring(i+1);  // def
-            
-//        if(visited.contains(left + right) == false){ //check to not visit same string twice
-//                 visited.add(left + right); // otherwise it gives TLE
-//                 solution(left + right , mra - 1, duplicate);
-//             }
-//         }
-//     }
-// }
