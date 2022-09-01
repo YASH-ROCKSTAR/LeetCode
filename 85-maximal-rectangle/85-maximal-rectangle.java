@@ -1,84 +1,66 @@
 class Solution {
     public int maximalRectangle(char[][] matrix) {
         int n=matrix[0].length;
-        int currow[]=new int[n];
-        int maxArea=0;
+        int[] curr=new int[n];
+        int maxarea=0;
         for(int i=0;i<matrix.length;i++){
             for(int j=0;j<matrix[0].length;j++){
                 if(matrix[i][j]=='0'){
-                    currow[j]=0;
+                    curr[j]=0;
                 }else{
-                    currow[j]+=1;
+                    curr[j]+=1;
                 }
-                
             }
-            maxArea=Math.max(maxArea,largestRectangleArea(currow));
+            maxarea=Math.max(maxarea,maxarearec(curr));
         }
-         return maxArea;
+        return maxarea;
     }
-     public int largestRectangleArea(int[] heights) {
+    public int maxarearec(int[] height){
+        int[] sma=nexsmaller(height);
+        int[] pre=prev(height);
         
-        int n = heights.length;
-        int[] pS = prevSmaller(heights);
-        int[] nS = nextSmaller(heights);
-               
-        int maxArea = 0;
-        for(int i=0; i<heights.length; i++) {
-            int curArea = (nS[i] - pS[i] - 1) * heights[i];  // area = height x width
-            maxArea = Math.max(curArea, maxArea);
+        int maxarea=0;
+        for(int i=0;i<height.length;i++){
+            int newarea=(sma[i]-pre[i]-1)*height[i];
+            maxarea=Math.max(maxarea,newarea);
         }
-        
-        return maxArea;
+        return maxarea;
     }
     
-    private int[] prevSmaller(int[] arr) {
+    public int[] prev(int[] arr){
+        int[] ar=new int[arr.length];
+        Stack<Integer> st=new Stack<Integer>();
         
-        int[] pS = new int[arr.length];
-        Stack<Integer> stack = new Stack<>();
-        
-        for(int i=0; i<arr.length; i++) {
-            // if(stack.isEmpty()){
-            //     stack.push(i);
-            //     pS[i]=-1;
-            // }else{
-                while(!stack.isEmpty() && arr[stack.peek()] >= arr[i]){
-                    stack.pop();
-                }
-                if(stack.isEmpty()){
-                    pS[i] = -1;
-                }
-                else{
-                    pS[i] = stack.peek();
-                }
-                stack.push(i);
-            // }
+        for(int i=0;i<arr.length;i++){
+            while(!st.isEmpty() && arr[st.peek()]>=arr[i]){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                ar[i]=-1;
+            }
+            else{
+                ar[i]=st.peek();
+            }
+            st.push(i);
         }
-        
-        return pS;
+        return ar;
     }
-    
-    private int[] nextSmaller(int[] arr) {
+    public int[] nexsmaller(int[] arr){
+        int[] ar=new int[arr.length];
+        Stack<Integer> st=new Stack<Integer>();
         
-        int[] nS = new int[arr.length];
-        Stack<Integer> stack = new Stack<>();
-        
-        for(int i=arr.length-1; i>=0; i--) {
-            // if(stack.isEmpty()){
-            //     stack.push(i);
-            //     nS[i]=arr.length;
-            // }else{
-                while(!stack.isEmpty() && arr[stack.peek()] >= arr[i]){
-                    stack.pop();
-                }
-                if(stack.isEmpty()){
-                    nS[i] = arr.length;
-                }else{
-                    nS[i] = stack.peek();
-                }
-                stack.push(i);
-            // }
+        for(int i=arr.length-1;i>=0;i--){
+            while(!st.isEmpty() && arr[st.peek()]>=arr[i]){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                ar[i]=arr.length;
+            }
+            else{
+                ar[i]=st.peek();
+            }
+            st.push(i);
         }
-        
-        return nS;
+        return ar;
     }
 }
