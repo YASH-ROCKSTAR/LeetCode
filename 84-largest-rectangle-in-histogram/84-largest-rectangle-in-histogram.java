@@ -1,56 +1,48 @@
 class Solution {
     public int largestRectangleArea(int[] heights) {
+        int[] nexsmaller=nextsmaller(heights);
+        int[] prev=prevsmaller(heights);
         
-        int n = heights.length;
-        int[] pS = prevSmaller(heights);
-        int[] nS = nextSmaller(heights);
-               
-        int maxArea = 0;
-        for(int i=0; i<heights.length; i++) {
-            int curArea = (nS[i] - pS[i] - 1) * heights[i];  // area = height x width
-            maxArea = Math.max(curArea, maxArea);
+        int maxarea=0;
+        
+        for(int i=0;i<heights.length;i++){
+            int newarea=(nexsmaller[i]-prev[i]-1)*heights[i];
+            maxarea=Math.max(newarea,maxarea);
         }
-        
-        return maxArea;
+        return maxarea;
     }
-    
-    private int[] prevSmaller(int[] arr) {
+    public int[] prevsmaller(int[] arr){
+        Stack<Integer> st=new Stack<>();
         
-        int[] pS = new int[arr.length];
-        Stack<Integer> stack = new Stack<>();
-        
-        for(int i=0; i<arr.length; i++) {
-            while(!stack.isEmpty() && arr[stack.peek()] >= arr[i])
-                stack.pop();
-            
-            if(stack.isEmpty())
-                pS[i] = -1;
-            else
-                pS[i] = stack.peek();
-            
-            stack.push(i);
+        int[] arr1=new int[arr.length];
+        for(int i=0;i<arr.length;i++){
+            while(!st.isEmpty() && arr[st.peek()]>=arr[i]){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                arr1[i]=-1;
+            }else{
+                arr1[i]=st.peek();
+            }
+            st.push(i);
         }
-        
-        return pS;
+        return arr1;
     }
-    
-    private int[] nextSmaller(int[] arr) {
+    public int[] nextsmaller(int[] arr){
+        Stack<Integer> st=new Stack<>();
         
-        int[] nS = new int[arr.length];
-        Stack<Integer> stack = new Stack<>();
-        
-        for(int i=arr.length-1; i>=0; i--) {
-            while(!stack.isEmpty() && arr[stack.peek()] >= arr[i])
-                    stack.pop();
-            
-            if(stack.isEmpty())
-                nS[i] = arr.length;
-            else
-                nS[i] = stack.peek();
-            
-            stack.push(i);
+        int[] arr1=new int[arr.length];
+        for(int i=arr.length-1;i>=0;i--){
+            while(!st.isEmpty() && arr[st.peek()]>=arr[i]){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                arr1[i]=arr.length;
+            }else{
+                arr1[i]=st.peek();
+            }
+            st.push(i);
         }
-        
-        return nS;
+        return arr1;
     }
 }
