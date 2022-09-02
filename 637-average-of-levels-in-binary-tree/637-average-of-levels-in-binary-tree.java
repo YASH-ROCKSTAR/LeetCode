@@ -19,6 +19,8 @@ class Solution {
         Queue<TreeNode> q=new LinkedList<>(); 
         q.add(root);
         
+        //so here we are using level order traversal
+        //and only the thing we doing here are we are take the size of stack at each level and running         //a for loop for that size and taking the average of all element at that level so adding it in list
         while(q.size()>0){
             int size=q.size();
             double sum=0;
