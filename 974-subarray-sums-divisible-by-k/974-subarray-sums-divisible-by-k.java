@@ -1,12 +1,13 @@
 class Solution {
-    public int subarraysDivByK(int[] A, int K) {
+    public int subarraysDivByK(int[] nums, int k) {
         HashMap<Integer,Integer> mp=new HashMap<>();
         mp.put(0,1);
-        int sum=0;
-        int count=0;
-        for(int i:A){
-            sum=(sum+i)%K;
-            if(sum<0) sum=sum+K;
+        int sum=0,count=0;
+        for(int i:nums){
+            sum=(sum+i)%k;
+            if(sum<0){
+                sum=sum+k;
+            }
             count+=mp.getOrDefault(sum,0);
             mp.put(sum,mp.getOrDefault(sum,0)+1);
         }
