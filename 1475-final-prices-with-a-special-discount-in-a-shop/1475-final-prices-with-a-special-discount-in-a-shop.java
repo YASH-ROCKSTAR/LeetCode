@@ -1,12 +1,12 @@
 class Solution {
     public int[] finalPrices(int[] prices) {
-        Stack<Integer> ss=new Stack<Integer>();
         for(int i=0;i<prices.length;i++){
-            while(!ss.isEmpty() && prices[i]<=prices[ss.peek()]){
-                prices[ss.peek()]=prices[ss.peek()]-prices[i];
-                ss.pop();
+            for(int j=i+1;j<prices.length;j++){
+                if(prices[j]<=prices[i]){
+                    prices[i]=prices[i]-prices[j];
+                    break;
+                }
             }
-            ss.push(i);
         }
         return prices;
     }
