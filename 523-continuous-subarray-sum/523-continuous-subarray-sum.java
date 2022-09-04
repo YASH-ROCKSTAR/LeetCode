@@ -1,6 +1,6 @@
 class Solution {
     public boolean checkSubarraySum(int[] nums, int k) {
-        HashMap<Integer,Integer> hh=new HashMap<>();
+        HashMap<Integer,Integer>mp=new HashMap<>();
         int sum=0;
         for(int i=0;i<nums.length;i++){
             sum=sum+nums[i];
@@ -8,13 +8,12 @@ class Solution {
             if(sum==0 && i>0){
                 return true;
             }
-            if(hh.containsKey(sum) && i-hh.get(sum)>1){
+            if(mp.containsKey(sum) && (i-mp.get(sum))>1){
                 return true;
             }
-            if(!hh.containsKey(sum)){
-                hh.put(sum,i);
+            if(!mp.containsKey(sum)){
+                mp.put(sum,i);
             }
-            
         }
         return false;
     }
