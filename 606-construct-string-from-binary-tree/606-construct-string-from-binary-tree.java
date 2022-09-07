@@ -24,6 +24,6 @@ class Solution {
         if(root.right==null){
             return root.val+"("+tree2str(root.left)+")";
         }
-        return root.val+"("+tree2str(root.left)+")("+tree2str(root.right)+")";
+        return root.val+"("+tree2str(root.left)+")"+"("+tree2str(root.right)+")";
     }
 }
