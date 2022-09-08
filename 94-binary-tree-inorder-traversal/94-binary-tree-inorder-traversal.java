@@ -15,16 +15,14 @@
  */
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> li=new ArrayList<Integer>();
+        List<Integer> li=new ArrayList<>();
         Stack<TreeNode> st=new Stack<>();
         TreeNode node=root;
         while(true){
             if(node!=null){
-                //root ko hi node bana le gye aur fir waaha se left root right kare gye
                 st.push(node);
                 node=node.left;
-            }
-            else{
+            }else{
                 if(st.isEmpty()){
                     break;
                 }
