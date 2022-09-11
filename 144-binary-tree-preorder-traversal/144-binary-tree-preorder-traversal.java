@@ -25,6 +25,8 @@ class Solution {
         while(!st.isEmpty()){
             TreeNode node=st.pop();
             li.add(node.val);
+            //why we are pushing right in stack first because stack is lifo data structure
+            //and so when we will be poping out element we need left first so that why we have push left at last after right
             if(node.right!=null){
                 st.push(node.right);
             }if(node.left!=null){
