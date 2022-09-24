@@ -21,12 +21,10 @@ class Solution {
     }
     public void inorder(TreeNode root,List<Integer> li){
         if(root==null){
-            return; 
+            return;
         }
         inorder(root.left,li);
         li.add(root.val);
         inorder(root.right,li);
-        
     }
-    
 }
