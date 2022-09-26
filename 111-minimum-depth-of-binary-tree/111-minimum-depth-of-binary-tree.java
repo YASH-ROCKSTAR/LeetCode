@@ -20,7 +20,7 @@ class Solution {
         }
         int lh=minDepth(root.left);
         int rh=minDepth(root.right);
-        //for skewed tree
+        
         if(lh==0 || rh==0){
             return 1+Math.max(lh,rh);
         }
