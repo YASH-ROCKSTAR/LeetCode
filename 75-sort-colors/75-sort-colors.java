@@ -5,23 +5,20 @@ class Solution {
         int end=nums.length-1;
         while(mid<=end){
             if(nums[mid]==0){
-                swap(mid,start,nums);
+                swap(nums,start,mid);
                 start++;
                 mid++;
-                
-            }
-            else if(nums[mid]==1){
+            }else if(nums[mid]==1){
                 mid++;
-            }
-            else{
-                swap(mid,end,nums);
+            }else{
+                swap(nums,end,mid);
                 end--;
             }
         }
     }
-    public void swap(int i,int j,int[] arr){
-        int temp=arr[i];
-        arr[i]=arr[j];
-        arr[j]=temp;
+    public void swap(int[] nums,int start,int mid){
+        int temp=nums[start];
+        nums[start]=nums[mid];
+        nums[mid]=temp;
     }
 }
