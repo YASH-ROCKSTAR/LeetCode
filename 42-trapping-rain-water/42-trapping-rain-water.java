@@ -13,8 +13,7 @@ class Solution {
                     res+=leftmax-height[l];
                 }
                 l++;
-            }
-            else{
+            }else{
                 if(height[r]<=height[l]){
                     if(height[r]>=rightmax){
                         rightmax=height[r];
