@@ -1,26 +1,22 @@
 class Solution {
     public int climbStairs(int n) {
-        //declaring n+1 size dp
-        int[] dp=new int[n+1];
-        //filling dp array with -1
-        Arrays.fill(dp,-1);
-        
-        return climb(n,dp);
+        return totalways(0,n,new HashMap<Integer,Integer>());
     }
-    public int climb(int n,int[] dp){
-        //see asume n clmb stair is below the gorund then uif n<0 return 0 beacuse qwill not go there
-        if(n<0){
-            return 0;
-        }
-        //if(n==0) means it reahces zero then return 1
-        if(n==0){
+    public int totalways(int current,int target,HashMap<Integer,Integer> mp){
+        if(current==target){
             return 1;
         }
-        //if int some of step value is valuether anf thst postion dp has value other than -1 then it return dp
-        if(dp[n]!=-1){
-            return dp[n];
+        if(current>target){
+            return 0;
         }
-        //returning dp by using recursive relation
-        return dp[n]=climb(n-1,dp)+climb(n-2,dp);
+        int currentKey=current;
+        if(mp.containsKey(currentKey)){
+            return mp.get(currentKey);
+        }
+        int onejump=totalways(current+1,target,mp);
+        int twojump=totalways(current+2,target,mp);
+        
+        mp.put(currentKey,onejump+twojump);
+        return onejump+twojump;
     }
 }
