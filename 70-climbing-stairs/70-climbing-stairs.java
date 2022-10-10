@@ -1,22 +1,22 @@
 class Solution {
     public int climbStairs(int n) {
-        return totalways(0,n,new HashMap<Integer,Integer>());
+        int[] dp=new int[n];
+        Arrays.fill(dp,-1);
+        return totalways(0,n,dp);
     }
-    public int totalways(int current,int target,HashMap<Integer,Integer> mp){
+    public int totalways(int current,int target,int[] dp){
         if(current==target){
             return 1;
         }
         if(current>target){
             return 0;
         }
-        int currentKey=current;
-        if(mp.containsKey(currentKey)){
-            return mp.get(currentKey);
+        if(dp[current]!=-1){
+            return dp[current];
         }
-        int onejump=totalways(current+1,target,mp);
-        int twojump=totalways(current+2,target,mp);
+        int onejump=totalways(current+1,target,dp);
+        int twojump=totalways(current+2,target,dp);
         
-        mp.put(currentKey,onejump+twojump);
-        return onejump+twojump;
+        return dp[current]=onejump+twojump;
     }
 }
