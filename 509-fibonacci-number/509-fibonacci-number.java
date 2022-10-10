@@ -1,8 +1,10 @@
 class Solution {
     public int fib(int n) {
-        return solve(n,new HashMap<Integer,Integer>());
+        int[] dp=new int[n+1];
+        Arrays.fill(dp,-1);
+        return solve(n,dp);
     }
-    public int solve(int n,HashMap<Integer,Integer> mp){
+    public int solve(int n,int[] dp){
         
         if(n==0){
             return 0;
@@ -10,14 +12,12 @@ class Solution {
         if(n==1){
             return 1;
         }
-        int currentkey=n;
-        if(mp.containsKey(currentkey)){
-            return mp.get(currentkey);
+        if(dp[n]!=-1){
+            return dp[n];
         }
-        int a=solve(n-1,mp);
-        int b=solve(n-2,mp);
+        int a=solve(n-1,dp);
+        int b=solve(n-2,dp);
         
-        mp.put(currentkey,a+b);
-        return a+b;
+        return dp[n]=a+b;
     }
 }
