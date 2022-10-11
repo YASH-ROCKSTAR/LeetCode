@@ -1,7 +1,8 @@
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
         HashMap<Integer,Integer> mp=new HashMap<Integer,Integer>();
-        return Math.min(solve(cost,0,mp),solve(cost,1,mp));
+        //so here we have solve problrm for 0 index in that we also calculated for 1 also so we can get answer from there
+        return Math.min(solve(cost,0,mp),mp.get(1));
     }
     public int solve(int[] cost,int current,HashMap<Integer,Integer> mp){
         if(current==cost.length){
