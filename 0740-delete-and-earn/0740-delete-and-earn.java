@@ -8,19 +8,20 @@ class Solution {
         for(int i:nums){
             freq[i]++;
         }
-        return solve(freq,0,new HashMap<Integer,Integer>());
+        int [] dp=new int[max+1];
+        Arrays.fill(dp,-1);
+        return solve(freq,0,dp);
     }
-    public int solve(int[] nums,int current,HashMap<Integer,Integer> mp){
+    public int solve(int[] nums,int current,int[] dp){
         if(current>=nums.length){
             return 0;
         }
-        int currentkey=current;
-        if(mp.containsKey(currentkey)){
-            return mp.get(currentkey);
+        if(dp[current]!=-1){
+            return dp[current];
         }
-        int del=nums[current]*current+solve(nums,current+2,mp);
-        int notdel=solve(nums,current+1,mp);
-        mp.put(currentkey,Math.max(del,notdel));
-        return mp.get(currentkey);
+        int del=nums[current]*current+solve(nums,current+2,dp);
+        int notdel=solve(nums,current+1,dp);
+        dp[current]=Math.max(del,notdel);
+        return dp[current];
     }
 }
