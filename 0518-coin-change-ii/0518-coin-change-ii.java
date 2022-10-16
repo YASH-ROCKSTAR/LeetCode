@@ -1,32 +1,26 @@
 class Solution {
     public int change(int amount, int[] coins) {
-        int n=coins.length;
-        int[][] dp=new int[n][amount+1];
-        for(int[] i:dp){
-            Arrays.fill(i,-1);
-        }
-        return solve(coins,0,amount,dp);
+        return solve(coins,0,amount,new HashMap<String,Integer>());
     }
-    public int solve(int[] nums,int current,int amount,int[][] dp){
+    public int solve(int[] nums,int current,int amount,HashMap<String,Integer> mp){
         if(amount==0){
             return 1;
         }
         if(current>=nums.length){
             return 0;
         }
-        if(dp[current][amount]!=-1){
-            return dp[current][amount];
+        String currentkey=Integer.toString(current)+"-"+Integer.toString(amount);
+        if(mp.containsKey(currentkey)){
+            return mp.get(currentkey);
         }
-        
         int curcoin=nums[current];
         int take=0;
         if(curcoin<=amount){
-            take=solve(nums,current,amount-curcoin,dp);
+            take=solve(nums,current,amount-curcoin,mp);
         }
-        int nottake=solve(nums,current+1,amount,dp);
-        
-        dp[current][amount]=take+nottake;
-        return dp[current][amount];
+        int nottake=solve(nums,current+1,amount,mp);
+        mp.put(currentkey,take+nottake);
+        return mp.get(currentkey);
         
     }
 }
