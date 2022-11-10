@@ -49,29 +49,29 @@ class gfg
 class Solution 
 { 
     //Function to return max value that can be put in knapsack of capacity W.
-    static int knapSack(int capa, int wt[], int val[], int n) 
+    static int knapSack(int W, int wt[], int val[], int n) 
     { 
-         return solve(wt,val,0,capa,n,new HashMap<String,Integer>());
+         // your code here 
+         return solve(wt,val,0,W,n,new HashMap<String,Integer>());
     } 
-    public static int solve(int[] wt,int[] val,int current,int capa,int n,HashMap<String,Integer> mp){
+    public static int solve(int[] wt,int[] val,int current,int cap,int n,HashMap<String,Integer> mp){
         if(current==n){
             return 0;
         }
-        int currentweight=wt[current];
-        int currentprofit=val[current];
-        String currentkey=Integer.toString(current) + "-" + Integer.toString(capa);
-        if(mp.containsKey(currentkey)){
-            return mp.get(currentkey);
-        }
+        int curwie=wt[current];
+        int curpro=val[current];
         int take=0;
-        if(currentweight<=capa){
-            take=currentprofit+solve(wt,val,current+1,capa-currentweight,n,mp);
+        String currentKey=Integer.toString(current)+"-"+Integer.toString(cap);
+        if(mp.containsKey(currentKey)){
+            return mp.get(currentKey);
         }
-        int nottake=solve(wt,val,current+1,capa,n,mp);
-        mp.put(currentkey,Math.max(take,nottake));
-        return mp.get(currentkey);
+        if(curwie<=cap){
+            take=curpro+solve(wt,val,current+1,cap-curwie,n,mp);
+        }
+        int nottake=solve(wt,val,current+1,cap,n,mp);
+        mp.put(currentKey,Math.max(take,nottake));
+        return mp.get(currentKey);
     }
-    
 }
 
 
