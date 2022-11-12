@@ -34,35 +34,31 @@ class GFG{
 
 class Solution{
     static int knapSack(int N, int W, int val[], int wt[])
-    {    // code here
+    {
         int[][] dp=new int[N][W+1];
         for(int[] i:dp){
             Arrays.fill(i,-1);
         }
         return solve(wt,val,0,W,N,dp);
     }
-    static int solve(int[] wt,int[] val,int current,int capacity,int n,int[][] dp){
-        if(capacity==0){
+    static int solve(int[] wt,int[] val,int current,int cap,int n,int[][] dp){
+        if(cap==0){
             return 0;
         }
         if(current==n){
             return 0;
         }
-        int currentweig=wt[current];
-        int currentprof=val[current];
-        
-        // String currentkey=Integer.toString(current)+"-"+Integer.toString(capacity);
-        if(dp[current][capacity]!=-1){
-            return dp[current][capacity];
+        if(dp[current][cap]!=-1){
+            return dp[current][cap];
         }
-        
-        int consider=0;
-        if(currentweig<=capacity){
-            consider=currentprof+solve(wt,val,current,capacity-currentweig,n,dp);
+        int currweigh=wt[current];
+        int currpro=val[current];
+        int take=0;
+        if(currweigh<=cap){
+            take=currpro+solve(wt,val,current,cap-currweigh,n,dp);
         }
-        int notconsi=solve(wt,val,current+1,capacity,n,dp);
-        dp[current][capacity]=Math.max(consider,notconsi);
-        return dp[current][capacity];
+        int notake=solve(wt,val,current+1,cap,n,dp);
+        dp[current][cap]=Math.max(take,notake);
+        return dp[current][cap];
     }
-    
 }
